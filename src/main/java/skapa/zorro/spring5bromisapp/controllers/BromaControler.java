@@ -9,18 +9,21 @@ import skapa.zorro.spring5bromisapp.services.BromaService;
 @Controller
 public class BromaControler {
 
-	//inyeccion de dependencia, no es necesario hacer el autowired, porque se esta haciendo a travez de constructor, por lo que spring reconocera esta injeccion
+	// inyeccion de dependencia, no es necesario hacer el autowired, porque se esta
+	// haciendo a travez de constructor, por lo que spring reconocera esta injeccion
 	private final BromaService bromaService;
+
 	public BromaControler(BromaService bromaService) {
 		this.bromaService = bromaService;
 	}
-	
-	//respuesta del controlador, poniendo el servicio broma, en el modelo para que pueda ser accedido a travez de thymeleaf
-	@RequestMapping({"/",""})
+
+	// respuesta del controlador, poniendo el servicio broma, en el modelo para que
+	// pueda ser accedido a travez de thymeleaf
+	@RequestMapping({ "/", "" })
 	public String muestraBroma(Model model) {
-		
-		model.addAttribute("broma", bromaService);
-		
+
+		model.addAttribute("broma", bromaService.getBroma());
+
 		return "index";
 	}
 }
